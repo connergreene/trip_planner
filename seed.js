@@ -1,6 +1,5 @@
 // This file should contain all the record creation needed to seed the database with its default values.
 // The data can then be loaded with the node seed.js 
-
 var Promise = require('bluebird');
 var mongoose = require('mongoose');
 var models = require('./models');
@@ -59,10 +58,8 @@ var data = {
     {name: "Strand Bookstore", place: [new Place({address: "828 Broadway", city: "New York", state: "NY", phone: "123-456-7890", location: [40.733274, -73.990870]})], age_range: "All" }
   ]
 };
-
 mongoose.connection.on('open', function() {
   mongoose.connection.db.dropDatabase(function() {
-
     console.log("Dropped old data, now inserting data");
     Promise.map(Object.keys(data), function(modelName) {
       return Promise.map(data[modelName], function(item) {

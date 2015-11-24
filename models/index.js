@@ -1,7 +1,8 @@
 var mongoose = require("mongoose");
 var Schema = mongoose.Schema;
+mongoose.connect('mongodb://localhost/seedjs');
 
-var Place = new Schema({
+var placeSchema = new Schema({
 	address: {type: String},
 	city: {type: String},
 	state: {type: String},
@@ -10,25 +11,37 @@ var Place = new Schema({
 });
 
 
-
-var Hotel = new Schema({
+var hotelSchema = new Schema({
 	name: {type: String},
-	place: {type: Array}, //array of place schema
+	place: [placeSchema], //array of place schema
 	num_stars: {type: Number},
 	amenities: {type: String}, //comma delimited string list
 });
 
 
-var Activity = new Schema({
+var activitySchema = new Schema({
 	name: {type: String},
-	place: {type: Array}, //array of place schema
+	place: [placeSchema],
 	age_range: {type: String}
 });
 
 
-var Restaurant = new Schema({
+var restaurantSchema = new Schema({
 	name: {type: String},
-	place: {type: Array}, //array of place schema
+	place: [placeSchema],
 	cuisines: {type: String},   //comma delimited string list
 	price: {type: Number} //integer from 1-5 for how many dollar signs
 });
+
+
+var Place = mongoose.model('Place', placeSchema);
+var Hotel = mongoose.model('Hotel', hotelSchema);
+var Activity = mongoose.model('Activity', activitySchema);
+var Restaurant = mongoose.model('Restaurant', restaurantSchema);
+
+module.exports = {
+	Place: Place,
+	Hotel: Hotel,
+	Activity: Activity,
+	Restaurant: Restaurant
+}

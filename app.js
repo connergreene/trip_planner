@@ -8,6 +8,14 @@ var app = express();
 
 app.use(morgan('dev'));
 
+app.use("/", routes);
+
+// Swig boilerplate
+app.set('views', __dirname + '/views'); // where to find views
+app.set('view engine', 'html'); // what file extension they have
+app.engine('html', swig.renderFile); // how to render html
+swig.setDefaults({cache: false}); // always re-render
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
@@ -22,7 +30,7 @@ app.use(function(err, req, res, next){
 	res.status(err.status || 500);
 	console.log({error:err});
 	res.render(
-		//"error.html"
+		"error"
 	);
 });
 
