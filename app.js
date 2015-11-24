@@ -3,6 +3,7 @@ var express = require('express'),
     bodyParser = require('body-parser'),
     morgan = require('morgan'),
     routes = require('./routes');
+// var sass = require('node-sass-middleware');
 
 var app = express();
 
@@ -19,6 +20,19 @@ swig.setDefaults({cache: false}); // always re-render
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
+// app.use(express.methodOverride());
+// app.use(
+//   sass({
+//     src: __dirname + '/assets', //where the sass files are 
+//     dest: __dirname + '/public', //where css should go
+//     debug: true
+//   })
+// );
+
+
+app.use('/bootstrap', express.static(__dirname + '/node_modules/bootstrap/dist'));
+
+app.use('/jquery', express.static(__dirname + '/node_modules/jquery/dist'));
 app.use(function(req, res, next){
 	var err = new Error('Not Found');
 	err.status = 404;

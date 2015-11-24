@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+  	<meta charset="utf-8">
+  	<title>Trip Planning SPA</title>
+  	<link href="/bootstrap/css/bootstrap.min.css" rel='stylesheet'>
+  </head>
+
+  <body>
+  	<style>
+    	body {background:gray;} 
+    	.container {
+    		float: right;
+    		height: 20%;
+    		width: 20%;
+    		border: 2px solid blue;
+    		}    	
+    	.inner{
+    		padding: 5%;
+    	}
+    	.one {
+    		float: right;
+    	}
+    	.btn {
+    		margin-top: 3%;
+    	}
+    	.navbar-brand img{
+    		max-width: 5%;
+    	}
+
+    	#map-canvas {
+    		height: 50vh;
+    		position:left;
+    	}
+
+    </style>
+    <nav class="navbar navbar-default navbar-inverse navbar-left navbar-fixed-top">
+    	<div class="container-fluid">
+	   		<div class="navbar-header">
+		     	<a class="navbar-brand" href="#">
+		     		<p class="navbar-text">Trip Planner</p>
+		       		<img alt="Brand" src="http://www.clipartbest.com/cliparts/bcy/nrx/bcynrxqcL.png">
+		     	</a>
+		     	<button type="button" class="btn btn-default navbar-btn">Home</button>	
+    			<button type="button" class="btn btn-default navbar-btn">About</button>
+    			<button type="button" class="btn btn-default navbar-btn">Contact</button>
+	   		</div>
+
+ 		</div>
+    	
+    </nav>
+    <div id = "map-canvas"></div>
+    <div class="container">
+    	<div class="inner">
+    		<h3>Hotels</h3>
+	    	<select class='form-control'>
+	    		<option>1</option>
+	    		<option>2</option>
+	    	</select>
+   		 </div>
+
+    	<div class="inner">
+    		<h3>Restuarants</h3>
+	    	<select class='form-control'>
+	    		<option>1</option>
+	    		<option>2</option>
+	    	</select>
+   		 </div>
+
+    	<div class="inner">
+    		<h3>Activities!</h3>
+	    	<select class='form-control'>
+	    		<option>1</option>
+	    		<option>2</option>
+	    	</select>
+   		 </div>
+   	</div>
+
+   	 <div class="container one">
+   	 	<div class="days">
+    		<button class="btn btn-default" type="submit">1</button>
+    		<button class="btn btn-default" type="submit">2</button>
+    		<button class="btn btn-default" type="submit">3</button>
+    		<button class="btn btn-default" type="submit">+</button>
+    	</div>
+    	<div class="inner">
+    		<h3>My Hotel</h3>
+	    	<select class='form-control'>
+	    		<option>1</option>
+	    		<option>2</option>
+	    	</select>
+   		 </div>
+
+    	<div class="inner">
+    		<h3>My Restuarants</h3>
+	    	<select class='form-control'>
+	    		<option>1</option>
+	    		<option>2</option>
+	    	</select>
+   		 </div>
+
+    	<div class="inner">
+    		<h3>MyActivities!</h3>
+	    	<select class='form-control'>
+	    		<option>1</option>
+	    		<option>2</option>
+	    	</select>
+   		 </div>
+   	</div>
+
+
+    {%block body%}{% endblock%}
+
+     <script src="jquery/jquery.min.js"></script>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC5pwc-DjZO5Ht7QX3c8d7rG0zXxvcTtzc"></script>
+
+
+
+     <script>
+     function initialize_gmaps() {
+    // initialize new google maps LatLng object
+    var myLatlng = new google.maps.LatLng(40.705189,-74.009209);
+    // set the map options hash
+    var mapOptions = {
+        center: myLatlng,
+        zoom: 16,
+        mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+    // get the maps div's HTML obj
+    var map_canvas_obj = document.getElementById("map-canvas");
+    // initialize a new Google Map with the options
+    var map = new google.maps.Map(map_canvas_obj, mapOptions);
+    // Add the marker to the map
+    var marker = new google.maps.Marker({
+        position: myLatlng,
+        title:"Hello World!"
+    });
+    // Add the marker to the map by calling setMap()
+    marker.setMap(map);
+}
+
+$(document).ready(function() {
+    initialize_gmaps();
+});
+     </script>
+
+
+  </body>
+
+  <footer>
+  </footer>
+
+  </html>
